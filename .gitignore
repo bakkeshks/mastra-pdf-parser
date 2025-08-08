@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+
+# Mastra build artifacts
+.mastra/
+dist/
+
+# Generated outputs
+outputs/
+*.pdf
+
+# Input PDF files (add your documents here)
+input_pdfs/
+
+# Database files
+*.db
+*.db-*
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+output.txt 
