@@ -1,31 +1,6 @@
 # Mastra PDF Document Parser
 
-A Mastra agent template for auto-classifying and extracting structured data from business PDFs (invoices, contracts, receipts).
-
-## Project ## 📁 Project Structure
-
-```
-mastra-template/
-├── 📄 processFiles.ts        # CLI for local file processing
-├── 🌐 processUrl.ts          # CLI for PDF URL processing  
-├── 🧪 evaluate.ts            # CLI for evaluation
-├── 📂 input_pdfs/            # Place your PDFs here
-├── 📂 outputs/               # Generated JSON files
-├── 📂 src/mastra/            # Core Mastra framework components
-│   ├── 🤖 agents/pdfAgent.ts # Framework agent for web UI
-│   ├── 🔧 tools/             # Invoice, contract, receipt tools
-│   └── 🔄 workflows/         # Document processing workflows
-├── 📂 evals/                 # Evaluation system
-└── 📂 utils/                 # Utility functions
-```tra-template/
-├── 📄 processFiles.ts        # Local file processing CLI
-├── 🌐 processUrl.ts          # PDF URL processing CLI  
-├── 🧪 evaluate.ts            # Evaluation CLI
-├── 📂 input_pdfs/            # Place your PDFs here
-├── 📂 outputs/               # Generated JSON files
-├── 📂 src/mastra/            # Core Mastra components
-├── 📂 evals/                 # Evaluation system
-└── 📂 utils/                 # Utility functions
+A Mastra agent template for auto classifying and extracting structured data from business PDFs (invoices, contracts, receipts).
 
 ### Problem Statement
 
@@ -36,13 +11,13 @@ Freelancers, indie hackers, and small SaaS teams deal with business documents li
 
 They manually extract and log key data (e.g. client name, amount, date) into spreadsheets, Notion, or a database.
 
-This is:
+### This is:
 - Time-consuming, Repetitive, Prone to manual errors
 - Unscalable past 50+ documents/month
 
 ## Solution
 
-- Accepts PDF files via CLI
+- Accepts PDF files via CLI or Web UI (Mastra Playground)
 - Auto-classifies type: invoice, contract, or receipt
 - Uses Mastra agents + tools + workflow
 - Validates JSON output using Zod
@@ -51,21 +26,19 @@ This is:
 
 ## Why Mastra AI Is the Right Framework
 
-- **🤖 AI Agent Orchestration**: Built-in Agent, Tool, and Workflow system for complex document processing
-- **🧩 Prompt Modularity**: One custom prompt per document type (invoice, contract, receipt)
-- **✅ Output Validation**: Zod schemas inside each tool file ensure data quality
-- **📊 Built-in Evaluation**: Compares structured results against expected outputs
-- **💻 Developer-First**: TypeScript, CLI-first approach for fast prototyping
-- **⚡ High Performance**: Uses Groq for fast AI inference (llama3-70b-8192)
-- **🔧 Production-Ready**: Handles batch processing of 100s of documents
+- 🤖 AI Agent Orchestration: Built-in Agent, Tool, and Workflow system for complex document processing
+- 🧩 Prompt Modularity: One custom prompt per document type (invoice, contract, receipt)
+- ✅ Output Validation: Zod schemas inside each tool file ensure data quality
+- 📊 Built-in Evaluation : Compares structured results against expected outputs
+- 💻 Developer-First: TypeScript, CLI-first approach for fast prototyping
+- ⚡ High Performance: Uses Groq for fast AI inference (llama3-70b-8192)
+- 🔧 Production-Ready: Handles batch processing of 100s of documents
 
 ## Use Cases
 
 1. Log contract metadata into Supabase
 2. Match Stripe payouts with client invoices  
 3. Migrate 500+ legacy invoices with zero copy-paste
-
-
 
 ## 🛠️ Installation
 
@@ -76,7 +49,7 @@ This is:
 ### Setup
 ```bash
 # Clone or download the project
-cd mastra-template
+cd mastra-pdf-parser
 
 # Install dependencies
 npm install
@@ -186,27 +159,11 @@ Output:
    • amount: 1 occurrences
 ```
 
-## 📁 Project Structure
-
-```
-mastra-template/
-├── � src/mastra/agents/      # AI agents
-│   ├── 🤖 pdfAgent.ts        # Framework agent for web UI
-│   └── 🔧 localFileAgent.ts  # CLI agent for local files
-├── 🌐 pdfurl.ts              # PDF URL processing CLI  
-├── 🧪 eval.ts                # Evaluation CLI
-├── 📂 input_pdfs/            # Place your PDFs here
-├── 📂 outputs/               # Generated JSON files
-├── 📂 src/mastra/            # Core Mastra components
-├── 📂 evals/                 # Evaluation system
-└── 📂 utils/                 # Utility functions
-```
-
 ## 🎯 Quick Start Example
 
 ### Method 1: Mastra Playground (Web UI)
 1. **Start the playground**: `npx mastra dev`
-2. **Open**: http://localhost:4111/agents/pdfAgent  
+2. **Open**: http://localhost:4111/agents  
 3. **Test URL**: https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf
 4. **⚠️ Important**: Use URLs only - local file upload won't work
 
