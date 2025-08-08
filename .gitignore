@@ -13,10 +13,14 @@ dist/
 
 # Generated outputs
 outputs/
+
+# PDF files (but allow specific ones)
 *.pdf
 
-# Input PDF files (add your documents here)
-input_pdfs/
+# Allow input_pdfs folder structure but ignore PDFs inside
+# input_pdfs/
+!input_pdfs/
+input_pdfs/*.pdf
 
 # Database files
 *.db
