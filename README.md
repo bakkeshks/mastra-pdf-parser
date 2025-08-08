@@ -66,38 +66,42 @@ cp .env.example .env
 
 ## 🚀 How to Use
 
-### Option 1: Mastra Playground (Web UI)
-1. **Start Mastra Playground**:
-   ```bash
-   npm run dev
-   ```
-   Open: http://localhost:4111/agents/pdfAgent
-  
-   add Sample URL: https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf
-   - **⚠️ Note**: Don't upload PDFs from local computer - it won't work
-   - **Use URLs only** in the playground
+### Method 1: Mastra Playground (Web UI)
+1. **Start the playground**: `npx mastra dev`
+2. **Open**: http://localhost:4111/agents
+3. **Test URL**: https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf
+4. **⚠️ Important**: Use URLs only - local file upload won't work
 
-### Option 2: CLI Processing (Recommended for Batch)
+### Method 2: CLI Processing (Recommended for Production)
 
-#### 1. Add Input PDFs
-Place your PDF files in the `input_pdfs/` folder:
+#### Single File Processing
 ```bash
-cp your-invoice.pdf input_pdfs/
-cp your-contract.pdf input_pdfs/
-```
-
-#### 2. Process Local Files
-```bash
-# Process single file
+# Process a single PDF file
 npx tsx processFiles.ts input_pdfs/your-invoice.pdf
 
-# Process all files in folder (BATCH PROCESSING)
+# Process with evaluation report
+npx tsx processFiles.ts input_pdfs/your-invoice.pdf --eval
+
+# Process PDF from URL
+npx tsx processUrl.ts "https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf"
+```
+
+#### Batch Processing
+```bash
+# Process all PDF files in folder
 npx tsx processFiles.ts input_pdfs/
 
-# Batch with evaluation report
+# Process with evaluation report
 npx tsx processFiles.ts input_pdfs/ --eval
 
+# Run evaluation on all processed documents
+npx tsx evaluate.ts
 ```
+
+#### Available CLI Options
+- `-h, --help`: Show help message
+- `-e, --eval`: Show detailed evaluation report  
+- `-d, --debug`: Enable debug logging
 
 ## 📊 Output
 
@@ -133,7 +137,7 @@ All processed documents are saved to `outputs/documents_database.json`:
 Get quality scores for your extractions:
 
 ```bash
-npm run eval
+npx tsx evaluate.ts
 ```
 
 Output:
@@ -159,61 +163,11 @@ Output:
    • amount: 1 occurrences
 ```
 
-## 🎯 Quick Start Example
-
-### Method 1: Mastra Playground (Web UI)
-1. **Start the playground**: `npx mastra dev`
-2. **Open**: http://localhost:4111/agents  
-3. **Test URL**: https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf
-4. **⚠️ Important**: Use URLs only - local file upload won't work
-
-### Method 2: CLI Batch Processing
-1. **Install**: `npm install`
-2. **Setup**: Add your `GROQ_API_KEY` to `.env`
-3. **Add PDFs**: Copy PDFs to `input_pdfs/`
-4. **Batch Process**: `npx tsx processFiles.ts input_pdfs/`
-5. **Evaluate**: `npx tsx evaluate.ts`
-
-### Batch Processing Commands
-```bash
-# Process all PDFs in folder
-npx tsx processFiles.ts input_pdfs/
-
-# Process with evaluation report
-npx tsx processFiles.ts input_pdfs/ --eval
-
-# Process PDF from URL
-npx tsx processUrl.ts "https://slicedinvoices.com/pdf/wordpress-pdf-invoice-plugin-sample.pdf"
-```
-
 ## 📈 Supported Document Types
 
 - **📑 Invoices**: Client, amount, invoice number, due date
 - **📋 Contracts**: Client name, dates, payment terms
 - **🧾 Receipts**: Date, customer, amount, description
-
-## 🚀 Batch Processing Features
-
-- **Process multiple PDFs**: Handle entire folders at once
-- **100% Success rate**: Reliable extraction across document types
-- **Auto-classification**: Automatically detects invoices, contracts, receipts
-- **Progress tracking**: Real-time status updates for each file
-- **Centralized database**: Single JSON file with all extracted data
-- **Fast processing**: Optimized for batch operations
-
-### Example Batch Results
-```bash
-📊 Batch Processing Summary:
-═══════════════════════════════════════
-📁 Total files: 6
-✅ Successful: 6
-❌ Errors: 0
-⏱️  Duration: 5.3s
-📈 Success rate: 100.0%
-📊 Database totals: 2 invoices, 2 contracts, 2 receipts
-💾 JSON database: outputs\documents_database.json
-═══════════════════════════════════════
-```
 
 ## 🔧 Configuration
 
