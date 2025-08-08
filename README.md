@@ -69,7 +69,7 @@ cp .env.example .env
 ### Option 1: Mastra Playground (Web UI)
 1. **Start Mastra Playground**:
    ```bash
-   npx mastra dev
+   npm run dev
    ```
    Open: http://localhost:4111/agents/pdfAgent
   
